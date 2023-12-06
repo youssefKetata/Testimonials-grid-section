@@ -17,14 +17,12 @@
 
 }
 
-/* Box sizing rules */
 *,
 *::before,
 *::after {
     box-sizing: border-box; 
 }
 
-/* Remove default margin */
 body,
 h1,
 h2,
@@ -38,7 +36,6 @@ dd {
     margin: 0;
 }
 
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
 ul,
 ol,
 a {
@@ -49,13 +46,10 @@ a {
 a {
     text-decoration: none;
 }
-
-/* Set core root defaults */
 html:focus-within {
     scroll-behavior: smooth;
 }
 
-/* Set core body defaults */
 body {
     min-height: 100vh;
     text-rendering: optimizeSpeed;
@@ -69,19 +63,16 @@ h2 {
     font-weight: var(--fw-600);
 }
 
-/* A elements that don't have a class get default styles */
 a:not([class]) {
     text-decoration-skip-ink: auto;
 }
 
-/* Make images easier to work with */
 img,
 picture {
     max-width: 100%;
     display: block;
 }
 
-/* Inherit fonts for inputs and buttons */
 input,
 button,
 textarea,
@@ -89,12 +80,10 @@ select {
     font: inherit;
 }
 
-/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
     html:focus-within {
         scroll-behavior: auto;
     }
-
     *,
     *::before,
     *::after {
@@ -102,18 +91,21 @@ select {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
-
     }
 }
 
 body {
     background-color: var(--clr-neutral-400);
-    padding: 10rem;
+}
+
+main {
+    padding: 8rem;
 }
 
 .testimonial-grid-section {
     display: grid;
     gap: 1.5rem;
+    
 }
 
 .card {
@@ -124,28 +116,27 @@ body {
     gap: 1rem;
     max-width: 100%;
     color: var(--clr-neutral-500);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
 }
 
 .card:nth-child(1) {
     background-color: var(--clr-primary-400);
     grid-area: one;
     .card_header_image {
-        border: hsla(0, 0%, 81%, 0.5) 2px solid;
+        outline: hsla(0, 0%, 81%, 0.5) 2px solid;
     }
     
 }
 
-.card:nth-child(1)>.card_title {
+.card>.card_title {
     z-index: 2;
+    line-height: 1.2;
 }
 
 .card:nth-child(1)::after {
-    /* create quations as background for the card */
     content: url(./images/bg-pattern-quotation.svg);
     position: absolute;
-    top: 10rem;
-    left: 31.8rem;
+    top: 8rem;
+    left: 29.5rem;
     z-index: 1;
 
 
@@ -160,6 +151,7 @@ body {
     background-color: var(--clr-primary-100);
     color: initial;
     grid-area: three;
+    box-shadow: 0px 35px 50px -15px hsla(0, 0%, 0%, 0.2); 
 
     .card_title {
         color: initial;
@@ -172,7 +164,7 @@ body {
     grid-area: four;
 
     .card_header_image {
-        border: var(--clr-primary-400) 1px solid;
+        outline: hsla(263, 55%, 52%, 0.5) 2px solid;
     }
 }
 
@@ -180,11 +172,15 @@ body {
     background-color: var(--clr-primary-100);
     color: initial;
     grid-area: five;
+    box-shadow: 0px 35px 50px -15px hsla(0, 0%, 0%, 0.2); 
 
     .card_title {
         color: initial;
         opacity: .7;
     }
+}
+.card>.card_text {
+    opacity: .7;
 }
 
 .card_header {
@@ -201,7 +197,6 @@ body {
     aspect-ratio: 1;
 }
 
-
 .card_header .card_header_info_name {
     font-weight: var(--fw-600);
 }
@@ -210,17 +205,32 @@ body {
     opacity: .5;
 }
 
-.card>.card_text {
-    opacity: .7;
-}
-
 .card_title {
     color: var(--clr-neutral-400);
 }
 
+.testimonial-grid-section {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+        "one one two five"
+        "three four four five";
+}
 
+@media screen and (max-width:1050px) {
+    .card:nth-child(1)::after { 
+        left: 25rem;
+    }
+    .testimonial-grid-section {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "one one"
+            "two three"
+            "four four"
+            "five five";
+    }
+}
 
-@media screen and (max-width:450px) {
+@media screen and (max-width:650px) {
     .testimonial-grid-section {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
@@ -231,24 +241,19 @@ body {
             "four"
             "five";
     }
-
-    body {
+    main {
         padding: 5rem 1.75rem;
     }
-
     .card:nth-child(1)::after {
         top: 5rem;
         left: 14rem;
     }
 }
 
-@media screen and (min-width:450px) {
-    .testimonial-grid-section {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: auto;
-        grid-template-areas:
-            "one one two five"
-            "three four four five";
-    }
-
+.attribution {
+    position: relative;
+    bottom:0;
+    font-size: 11px;
+    text-align: center;
+    color: hsl(228, 45%, 44%);
 }
